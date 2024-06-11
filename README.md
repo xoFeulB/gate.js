@@ -14,11 +14,13 @@ gate --index index.html --out ./dist --depth 10000
 
 ```bash
 Options:
-      --version  Show version number                                   [boolean]
-  -i, --index    path to index.html                                     [string]
-  -o, --out      path to output directory               [string] [default: "./"]
-  -d, --depth    path to output directory              [number] [default: 10000]
-      --help     Show help                                             [boolean]
+      --version   Show version number                                  [boolean]
+  -i, --index     path to index.html                                    [string]
+  -o, --out       path to output directory              [string] [default: "./"]
+  -d, --depth     path to output directory             [number] [default: 10000]
+  -r, --root      gate src root                                         [string]
+  -p, --prettier  enable prettier                      [boolean] [default: true]
+      --help      Show help                                            [boolean]
 ```
 
 ## input

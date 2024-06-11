@@ -24,12 +24,25 @@ let argv = yargs(process.argv.slice(2))
         type: "number",
         default: 10000,
     })
+    .option("root", {
+        alias: "r",
+        description: "gate src root",
+        type: "string",
+    })
+    .option("prettier", {
+        alias: "p",
+        description: "enable prettier",
+        type: "boolean",
+        default: true,
+    })
     .help().argv;
 
 
 let index_path = path.resolve(argv.i);
 let index_dir = path.dirname(index_path);
 let dist_dir = path.resolve(argv.o);
+let root_dir = path.resolve(argv.r);
+index_dir = root_dir ? root_dir : index_dir;
 
 let HTML = {};
 
@@ -41,8 +54,8 @@ fs.globSync(`${index_dir}/**/*.html`).forEach((html_path) => {
 
 
 for (let counter = 0; counter < argv.d; counter++) {
-    if (HTML[index_path].window.document.querySelector(`gate`)) {
-        HTML[index_path].window.document.querySelectorAll(`gate`).forEach((gate_tag) => {
+    if (HTML[index_path].window.document.querySelector(`gate,ga-te`)) {
+        HTML[index_path].window.document.querySelectorAll(`gate,ga-te`).forEach((gate_tag) => {
             let gate_target_path = path.join(index_dir, gate_tag.getAttribute("src"));
             gate_tag.outerHTML = HTML[gate_target_path].window.document.querySelector(`html`).outerHTML;
         });
@@ -51,10 +64,14 @@ for (let counter = 0; counter < argv.d; counter++) {
     }
 }
 
-let result_html = await prettier.format(
-    HTML[index_path].window.document.querySelector(`html`).outerHTML,
-    { parser: "html" }
-);
+let result_html = HTML[index_path].window.document.querySelector(`html`).outerHTML;
+if (argv.p) {
+    result_html = await prettier.format(
+        result_html,
+        { parser: "html" }
+    );
+}
+
 
 console.log(`Write out to ... ${path.join(dist_dir, path.basename(index_path))}`);
 await fs.writeFileSync(path.join(dist_dir, path.basename(index_path)), result_html, "utf-8");
