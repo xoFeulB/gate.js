@@ -41,7 +41,7 @@ let argv = yargs(process.argv.slice(2))
 let index_path = path.resolve(argv.i);
 let index_dir = path.dirname(index_path);
 let dist_dir = path.resolve(argv.o);
-let root_dir = path.resolve(argv.r);
+let root_dir = argv.r ? path.resolve(argv.r) : argv.r;
 index_dir = root_dir ? root_dir : index_dir;
 
 let HTML = {};
