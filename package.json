@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "name": "@xofeulb/gate-js",
+  "version": "0.1.0",
+  "description": "",
+  "type": "module",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xoFeulB/gate.js.git"
+  },
+  "keywords": [
+    "BlueFox"
+  ],
+  "author": "BlueFoxEnterprise",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/xoFeulB/gate.js/issues"
+  },
+  "homepage": "https://github.com/xoFeulB/gate.js",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "jsdom": "^24.1.0",
+    "prettier": "^3.3.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {},
+  "bin": {
+    "gate": "./src/index.js"
+  }
+}
