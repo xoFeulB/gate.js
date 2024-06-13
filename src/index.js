@@ -14,9 +14,9 @@ let argv = yargs(process.argv.slice(2))
     })
     .option("out", {
         alias: "o",
-        description: "path to output directory",
+        description: "path to <output>.html",
         type: "string",
-        default: "./",
+        default: "./index.html",
     })
     .option("depth", {
         alias: "d",
@@ -73,5 +73,5 @@ if (argv.p) {
 }
 
 
-console.log(`Write out to ... ${path.join(dist_dir, path.basename(index_path))}`);
-await fs.writeFileSync(path.join(dist_dir, path.basename(index_path)), result_html, "utf-8");
+console.log(`Write out to ... ${dist_dir}`);
+await fs.writeFileSync(dist_dir, result_html, "utf-8");
