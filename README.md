@@ -9,14 +9,14 @@ npm link
 ## usage
 
 ```bash
-gate --index index.html --out ./dist --depth 10000
+gate --index index.html --out ./dist/index.html --depth 10000
 ```
 
 ```bash
 Options:
       --version   Show version number                                  [boolean]
   -i, --index     path to index.html                                    [string]
-  -o, --out       path to output directory              [string] [default: "./"]
+  -o, --out       path to <output>.html       [string] [default: "./index.html"]
   -d, --depth     path to output directory             [number] [default: 10000]
   -r, --root      gate src root                                         [string]
   -p, --prettier  enable prettier                      [boolean] [default: true]
