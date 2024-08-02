@@ -5,6 +5,7 @@ import path from "node:path";
 import { JSDOM } from "jsdom";
 import prettier from "prettier"
 import yargs from "yargs"
+import { minify } from "html-minifier";
 
 let argv = yargs(process.argv.slice(2))
     .option("index", {
@@ -34,6 +35,12 @@ let argv = yargs(process.argv.slice(2))
         description: "enable prettier",
         type: "boolean",
         default: true,
+    })
+    .option("minify", {
+        alias: "m",
+        description: "enable minify",
+        type: "boolean",
+        default: false,
     })
     .help().argv;
 
@@ -70,6 +77,13 @@ if (argv.p) {
         result_html,
         { parser: "html" }
     );
+}
+if (argv.m) {
+    result_html = minify(result_html, {
+        collapseWhitespace: true,
+        collapseInlineTagWhitespace: true,
+        collapseWhitespace: true,
+    });
 }
 
 
