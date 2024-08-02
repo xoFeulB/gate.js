@@ -83,6 +83,7 @@ if (argv.m) {
         collapseWhitespace: true,
         collapseInlineTagWhitespace: true,
         collapseWhitespace: true,
+        minifyJS: true,
     });
 }
 
